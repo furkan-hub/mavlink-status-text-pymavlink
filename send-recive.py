@@ -15,6 +15,8 @@ my_process.wait_heartbeat()
 # inform user
 print("Serving as a system:", my_process.source_system, ", component:", my_process.source_component)
 
+my_process.param_fetch_all()
+
 # create an infinite loop
 while True:
 
@@ -27,5 +29,9 @@ while True:
 
     # send message to the GCS
     my_process.mav.send(message)
+    
+    m = my_process.recv_match(type = "STATUSTEXT", blocking = True, timeout = 1)
+    
+    print(m)
     # sleep a bit
     time.sleep(1)
