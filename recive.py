@@ -19,7 +19,5 @@ while True:
     m = master.recv_match(type = "STATUSTEXT", blocking = True, timeout = 1)
     if m:
         print("system: ",m.get_srcSystem())
-        print(m)
-
-    # if m is None:
-    #             break
+        #data = m.split("text:", 1)[-1].strip()
+        #print(m)
