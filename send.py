@@ -10,7 +10,7 @@ link = "udp:127.0.0.1:5782"
 #link = "udp:127.0.0.1:14550"
 #link = "/dev/ttyACM0"
 
-# create a source component
+
 my_process = utility.mavlink_connection(device=link)# bağlantı adresi 
 my_process.wait_heartbeat()#heartbeat bekle
 
