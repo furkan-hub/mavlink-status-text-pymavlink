@@ -1,3 +1,6 @@
+#AISOFT MAVLINK COMMUNICATION SCRIPT
+
+
 import time
 from pymavlink import mavutil
 import pymavlink.dialects.v20.all as dialect

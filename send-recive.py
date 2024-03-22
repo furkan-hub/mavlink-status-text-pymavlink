@@ -1,3 +1,6 @@
+#AISOFT MAVLINK COMMUNICATION SCRIPT
+
+
 import time
 import random
 import pymavlink.mavutil as utility
