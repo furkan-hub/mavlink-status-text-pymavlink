@@ -11,17 +11,17 @@ link = "tcp:127.0.0.1:5762"
 #link = "/dev/ttyACM0"
 # create a source component
 
-my_process = utility.mavlink_connection(device=link,
-                                        source_system=2,
-                                        source_component=2)
-my_process.wait_heartbeat()
+dronea = utility.mavlink_connection(device=link,
+                                        source_system=3,
+                                        source_component=3)
+dronea.wait_heartbeat()
 
 # inform user
-print("Serving as a system:", my_process.source_system, ", component:", my_process.source_component)
+print("Serving as a system:", dronea.source_system, ", component:", dronea.source_component)
 
-my_process.param_fetch_all()
+dronea.param_fetch_all()
 
-def send_status(data):
+def send_status(data,drone):
     text = data #gonderilecek mesaj
 
     # create STATUSTEXT message
@@ -29,10 +29,11 @@ def send_status(data):
                                                  text=text.encode("utf-8"))
 
     # send message to the GCS
-    my_process.mav.send(message)
+    drone.mav.send(message)
+    
 
-def get_status():
-    m = my_process.recv_match(type = "STATUSTEXT", blocking = True, timeout = 1)#mesajı alma objesi
+def get_status(drone):
+    m = drone.recv_match(type = "STATUSTEXT", blocking = True, timeout = 1)#mesajı alma objesi
     
     if m is not None:  # m'nin None olup olmadığını kontrol et
         desired_data = m.text
@@ -45,11 +46,11 @@ def get_status():
 # create an infinite loop
 while True:
 
-    send_status("")
+    send_status("Drone_A_To_GCS",dronea)
     
     
     #m = my_process.recv_match(type = "STATUSTEXT", blocking = True, timeout = 1)
     
-    print(get_status())
+    print(get_status(dronea))
     # sleep a bit
     time.sleep(1)
