@@ -15,12 +15,6 @@ jetsondan bağlanmak için ama buna gerek yok
 mavproxy.py --master=/dev/ttyACM0 
 ```
 
-jetsona ssh bağlantısı için ip
-
-```
-ssh aisoft@192.168.1.107 
-```
-
 mavproxy den port çoğaltmak için gerekli komut
 
 ```
